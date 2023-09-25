@@ -5,8 +5,8 @@ class MyWishListPage extends Page {
     get addedToWishListMsg() { return $(`div[data-ui-id='message-success'] > div`);}
     productInWishList(product) { return $(`//a[@title='${product}' and @class='product-item-link']`);}
     
-    async load() {
-        return super.load('wishlist/')
+    open() {
+        return super.open('wishlist/')
     }
     
     async getMsgAddedToWL() {

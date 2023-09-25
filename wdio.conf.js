@@ -1,9 +1,7 @@
 const url = require('./urls')
 require('dotenv').config({path: './variables.env'})
 
-const ENV = process.env.ENV;
-
-if(!ENV  || !['qa', 'dev', 'uat'].includes(ENV)){
+if(!process.env.ENV  || !['qa', 'dev', 'uat'].includes(process.env.ENV)){
     console.log('Please pass environment when running tests.. ')
     process.exit()
 }
@@ -32,7 +30,7 @@ exports.config = {
     // will be called from there.
     //
     specs: [
-        './tests/**/*.js'
+        './features/**/*.feature'
     ],
     
     // suites: {
@@ -61,7 +59,7 @@ exports.config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: 10,
+    maxInstances: 3,
     //
     // Inserts WebdriverIO's globals (e.g. `browser`, `$` and `$$`) into the global environment.
     // If you set to `false`, you should import from `@wdio/globals`. Note: WebdriverIO doesn't
@@ -74,7 +72,7 @@ exports.config = {
     // https://saucelabs.com/platform/platform-configurator
     //
     capabilities: [{
-        browserName: 'chrome'
+        browserName: 'edge'
         // version: '',
         // path: ''
     }],
@@ -110,7 +108,7 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: url[process.env.ENV],
+    baseUrl: 'https://magento.softwaretestingboard.com/',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -134,7 +132,7 @@ exports.config = {
     //
     // Make sure you have the wdio adapter package for the specific framework installed
     // before running any tests.
-    framework: 'mocha',
+    framework: 'cucumber',
     //
     // The number of times to retry the entire specfile when it fails as a whole
     // specFileRetries: 1,
@@ -150,13 +148,33 @@ exports.config = {
     // see also: https://webdriver.io/docs/dot-reporter
     reporters: ['spec'],
 
-    //
-    // Options to be passed to Mocha.
-    // See the full list at http://mochajs.org/
-    mochaOpts: {
-        ui: 'bdd',
-        timeout: 60000
+    cucumberOpts: {
+        require: [
+            "./steps/**/given.js",
+            "./steps/**/when.js",
+            "./steps/**/then.js"
+        ],
+        backtrace: false,
+        // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
+        requireModule: [],
+        // <boolean> invoke formatters without executing steps
+        dryRun: false,
+        // <boolean> abort the run on first failure
+        failFast: false,
+        // <boolean> hide step definition snippets for pending steps
+        snippets: true,
+        // <boolean> hide source uris
+        source: true,
+        // <boolean> fail if there are any undefined or pending steps
+        strict: false,
+        // <string> (expression) only execute the features or scenarios with tags matching the expression
+        tagExpression: '',
+        // <number> timeout for step definitions
+        timeout: 60000,
+        // <boolean> Enable this config to treat undefined definitions as warnings.
+        ignoreUndefinedDefinitions: false
     },
+
     //
     // =====
     // Hooks

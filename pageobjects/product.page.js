@@ -2,11 +2,9 @@ const Page = require('./page');
 
 class ProductPage extends Page {
 
-    async load(){
-        return await super.load('')
+    async open(){
+        return await super.open('')
     }
-
-    
 
 }
 

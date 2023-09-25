@@ -1,5 +1,5 @@
 
-module.exports = class Page {
+class Page {
 
     get notLoggedWelcome() { return $('span[class="not-logged-in"]');}
 
@@ -15,4 +15,23 @@ module.exports = class Page {
         return await browser.getTitle();
     }
 
+    /**
+     * Takes user to Register page
+     */
+    async goToRegisterAccountPage() {
+        await this.registerAccountButton.waitForDisplayed()
+        await this.registerAccountButton.click()
+    }
+
+    /**
+     * Takes user to Login page
+     */
+    async goToLoginAccountPage() {
+        await this.loginAccountButton.waitForDisplayed()
+        await this.loginAccountButton.click()
+    }
+
+
 }
+
+module.exports = Page 

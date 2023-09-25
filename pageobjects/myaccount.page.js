@@ -5,8 +5,8 @@ class MyAccountPage extends Page {
     get usernameAndEmailInfo () {return $('//div[contains(@class, "information")]//p');}
     get successfulRegistrationMessage () {return $('//div[contains(@class,"message-success")]/div');}
 
-    async open() {
-        await super.open('customer/account/')
+    open() {
+        return super.open('customer/account/')
     }
     
     async getUsernameAndEmailInfo() {

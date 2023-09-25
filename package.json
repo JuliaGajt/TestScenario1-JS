@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "wdio run wdio.conf.js",
+    "wdio": "wdio run ./wdio.conf.js",
+    "test": "./node_modules/.bin/wdio wdio.conf.js",
+    "test:regression": "./node_modules/.bin/wdio wdio.conf.js --cucumberOpts.tagExpression='@regression'",
     "actions": "wdio --suite actions"
   },
   "keywords": [],
@@ -12,14 +14,15 @@
   "license": "ISC",
   "dependencies": {
     "@wdio/cli": "^8.16.7",
-    "chai": "^4.3.8",
+    "@wdio/cucumber-framework": "^8.16.11",
+    "chai": "~4.0.1",
     "chai-webdriverio": "^1.0.0",
     "dotenv": "^16.3.1",
+    "eslint": "^8.50.0",
     "webdriverio": "^8.16.7"
   },
   "devDependencies": {
     "@wdio/local-runner": "^8.16.7",
-    "@wdio/mocha-framework": "^8.16.7",
     "@wdio/spec-reporter": "^8.16.7"
   }
 }

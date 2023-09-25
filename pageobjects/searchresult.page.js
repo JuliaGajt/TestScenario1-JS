@@ -33,15 +33,16 @@ class SearchResultPage extends Page {
      * @returns {[string]}
      */
     async getRelatedSearchTerms() {
+        console.log(await this.relatedSearchTerms.map(async term => {return await term.getText();}))
         return await this.relatedSearchTerms.map(async term => {return await term.getText();});
     }
 
     /**
      * Returns notification that no results were found.
-     * @returns {string}
+     * @returns {Element}
      */
     async getNoResultsMessage() {
-        await this.noResultsMessage.waitForDisplayed()
+        await this.noResultsMessage.waitForDisplayed();
         return await this.noResultsMessage.getText();
     }
 

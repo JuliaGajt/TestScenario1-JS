@@ -4,8 +4,8 @@ class CartPage extends Page {
 
     get productsInCart() {return $$(`//*[@class='product-item-name']/a[not(@data-bind)]`)}
 
-    async load() {
-        return super.load('checkout/cart/')
+    open() {
+        return super.open('checkout/cart/')
     }
 
     async getProductsInCart() {

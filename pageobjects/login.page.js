@@ -14,8 +14,8 @@ class LoginPage extends Page {
 
     get errorWishList () { return $(`div[data-ui-id='message-error'] > div`)}
 
-    open () {
-        return super.open('customer/account/login/');
+    async open () {
+        await super.open('customer/account/login/');
     }
 
     /**
