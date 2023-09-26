@@ -5,26 +5,20 @@ Feature: Register new Account
     Background:
         Given the browser is at "Create an Account" page
 
-        Scenario Outline: Register with valid data 
+        Scenario: Register with valid data 
 
-            When registering user with <firstName>
+            When registering user with Valid
             Then the title of the page should be "My Account"
             And <firstName> information should be visible
             And successful registration message should be visible
 
-            Examples: 
-                |firstName  |
-                |Valid      |
 
-        Scenario Outline: User is not registered with invalid data
+        Scenario: User is not registered with invalid data
 
-            When registering user with <firstName>
+            When registering user with Already Exist
             Then the title of the page should be "Create New Customer Account"
             And registration error message should be visible
 
-            Examples: 
-                |firstName          |
-                |Already Exist      |
 
         Scenario Outline: User is not registered with missing data 
 
@@ -41,7 +35,7 @@ Feature: Register new Account
                 |password confirmation |
 
 
-        Scenario Outline: User is not registered with missing data 
+        Scenario: User is not registered with missing data 
 
             When registering user with different passwords
             Then the title of the page should be "Create New Customer Account"
